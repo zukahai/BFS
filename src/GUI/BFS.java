@@ -28,14 +28,13 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	Container cn;
 	Color cl[] = {Color.lightGray, Color.black, Color.red, Color.green};
 	
-	public BFS() {
-		for (int i = 0; i < M; i++)
-			for (int j = 0; j < N; j++)
-				a[i][j] = 0;
-		cn = init();
-	}
+	String matrix[] = {"3333333333300000000330000000033000000003300001100330000200033000011003300000000330000000033333333333",
+			"3333333333300000000330000100033000000003300000000330000200033001001003300000000330000000033333333333",
+			"3333333333300000000330000000033000000003300000000330000200033000000003300000000330000000033333333333"};
 	
-	public BFS(String s) {
+	public BFS() {
+		int k = 2;
+		String s = matrix[k];
 		int index = 0;
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -220,6 +219,6 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new BFS("3333333333300000000330000000033000000003300001100330000200033000011003300000000330000000033333333333");
+		new BFS();
 	}
 }
