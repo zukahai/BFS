@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class BFS extends JFrame implements ActionListener, KeyListener{
+public class initMatrix extends JFrame implements ActionListener, KeyListener{
 	int key = 1;
 	boolean die = false;
 	int M = 10, N = 10;
@@ -27,15 +27,16 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	int a[][] = new int [M][N];
 	Container cn;
 	Color cl[] = {Color.lightGray, Color.black, Color.red, Color.green};
+	JButton type_bt, Result_bt, bfs_bt;
 	
-	public BFS() {
+	public initMatrix() {
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
 				a[i][j] = 0;
 		cn = init();
 	}
 	
-	public BFS(String s) {
+	public initMatrix(String s) {
 		int index = 0;
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
@@ -62,12 +63,32 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 		JPanel pn2 = new JPanel();
 		pn2.setLayout(new FlowLayout());
 		
+		type_bt = new JButton("    ");
+		type_bt.setActionCommand("type_bt");
+		type_bt.addActionListener(this);
+		type_bt.setBackground(cl[key]);
+		
+		Result_bt = new JButton("Result");
+		Result_bt.addActionListener(this);
+		Result_bt.setBackground(Color.black);
+		Result_bt.setForeground(Color.white);
+		
+		bfs_bt = new JButton("BFS");
+		bfs_bt.addActionListener(this);
+		bfs_bt.setBackground(Color.black);
+		bfs_bt.setForeground(Color.white);
+		
+		pn2.add(type_bt);
+		pn2.add(Result_bt);
+		pn2.add(bfs_bt);
+		
+		
 		cn.add(pn);
 		cn.add(pn2, "South");
 		cn.addKeyListener(this);
 		
 		this.setVisible(true);
-		this.setSize(600, 650);
+		this.setSize(600, 700);
 		this.setLocationRelativeTo(null);
 //		setResizable(false);
 //		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -165,13 +186,25 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 		// TODO Auto-generated method stub
 		if (die)
 			return;
-		int K = Integer.parseInt(e.getActionCommand());
-		int J = K % N;
-		int I = K / N;
-		a[I][J] = key;
-		if (key < 4)
-			bt[I][J].setBackground(cl[key]);
-		BFS();
+		if (e.getActionCommand().equals(type_bt.getActionCommand())) {
+			key ++;
+			if (key == 4)
+				key = 0;
+			type_bt.setBackground(cl[key]);
+		} else if (e.getActionCommand().equals(Result_bt.getActionCommand())) {
+			print();
+			new Message(print2());
+		} else if (e.getActionCommand().equals(bfs_bt.getActionCommand())) {
+			BFS();
+		} else {
+			int K = Integer.parseInt(e.getActionCommand());
+			int J = K % N;
+			int I = K / N;
+			a[I][J] = key;
+			if (key < 4)
+				bt[I][J].setBackground(cl[key]);
+//			BFS();
+		}
 	}
 
 
@@ -220,6 +253,6 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new BFS("3333333333300000000330000000033000000003300001100330000200033000011003300000000330000000033333333333");
+		new initMatrix("3333333333300000000330000000033000000003300001100330000200033000011003300000000330000000033333333333");
 	}
 }
