@@ -21,7 +21,8 @@ import javax.swing.JPanel;
 
 public class BFS extends JFrame implements ActionListener, KeyListener{
 	int key = 1;
-	int M = 30, N = 30;
+	boolean die = false;
+	int M = 10, N = 10;
 	JButton bt[][] = new JButton[100][100];
 	int a[][] = new int [M][N];
 	Container cn;
@@ -149,18 +150,23 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 		int X = (int) d.getX();
 		int Y = (int) d.getY();
 		if (b[X][Y] == MMM || a[X][Y] != 3) {
-			return;
+			JOptionPane.showMessageDialog(null, "Win");
+			die = true;
 		}
 //		System.out.println(X + " " + Y + " " + b[X][Y]);
+		if (b[X][Y] == 1) {
+			die = true;
+			JOptionPane.showMessageDialog(null, "Loss");
+		}
 		while (b[X][Y] > 0) {
 			int XX = X;
 			int YY = Y;
-			System.out.println(b[X][Y] + " --^^");
+//			System.out.println(b[X][Y] + " --^^");
 			for (int i = XX - 1; i <= XX + 1; i++)
 				for (int j = YY - 1; j <= YY + 1; j++)
 					if (i >= 0 && i < M && j >= 0 && j < N && Math.abs(i - X) + Math.abs(j - Y) == 1 && b[i][j] - b[X][Y] == -1) {
 						if (a[i][j] != 2) {
-							System.out.println(i + " " + j);
+//							System.out.println(i + " " + j);
 							bt[i][j].setBackground(Color.orange);
 						}
 						X = i;
@@ -178,6 +184,8 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if (die)
+			return;
 		if (e.getActionCommand().equals(type_bt.getActionCommand())) {
 			key ++;
 			if (key == 4)
@@ -245,6 +253,6 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new BFS("333333333333333333333333333333300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000002000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003300000000000000000000000000003333333333333333333333333333333");
+		new BFS("3333333333300000000330000000033000000003300001100330000200033000011003300000000330000000033333333333");
 	}
 }
