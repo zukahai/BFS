@@ -26,14 +26,16 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 	JButton bt[][] = new JButton[100][100];
 	int a[][] = new int [M][N];
 	Container cn;
-	Color cl[] = {Color.lightGray, Color.black, Color.red, Color.green};
+	Color cl[] = {Color.lightGray, Color.black, Color.red, Color.blue};
 	
 	String matrix[] = {"3333333333300000000330000000033000000003300001100330000200033000011003300000000330000000033333333333",
 			"3333333333300000000330000100033000000003300000000330000200033001001003300000000330000000033333333333",
-			"3333333333300000000330000000033000000003300000000330000200033000000003300000000330000000033333333333"};
+			"3333333333300000000330000000033000000003300000000330000200033000000003300000000330000000033333333333",
+			"3333333333333333333333000000033300000003330000003333000200333300000033330000003333330003333333333333",
+			""};
 	
 	public BFS() {
-		int k = 2;
+		int k = 3;
 		String s = matrix[k];
 		int index = 0;
 		for (int i = 0; i < M; i++)
@@ -55,6 +57,7 @@ public class BFS extends JFrame implements ActionListener, KeyListener{
 				bt[i][j].addKeyListener(this);
 				bt[i][j].setBackground(cl[a[i][j]]);
 				bt[i][j].setActionCommand(i * N + j + "");
+				bt[i][j].setBorder(null);
 				pn.add(bt[i][j]);
 			}
 		

@@ -26,7 +26,7 @@ public class initMatrix extends JFrame implements ActionListener, KeyListener{
 	JButton bt[][] = new JButton[100][100];
 	int a[][] = new int [M][N];
 	Container cn;
-	Color cl[] = {Color.lightGray, Color.black, Color.red, Color.green};
+	Color cl[] = {Color.lightGray, Color.black, Color.red, Color.blue};
 	JButton type_bt, Result_bt, bfs_bt;
 	
 	public initMatrix() {
